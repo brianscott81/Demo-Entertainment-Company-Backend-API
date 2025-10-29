@@ -10,5 +10,8 @@ namespace Demo_Entertainment_Company_Backend_API.Models
         public int Id { get; set; }
         public string Username { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
+        public bool IsStaff { get; set; }
+        public int GameCredits { get; set; }
+        public int RideTickets { get; set; }
     }
 }
