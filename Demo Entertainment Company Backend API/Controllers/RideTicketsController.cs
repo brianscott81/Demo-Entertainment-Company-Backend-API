@@ -14,56 +14,56 @@ namespace Demo_Entertainment_Company_Backend_API.Controllers
 
         public RideTicketsController(RideTicketService ticketService, UserService userService)
         {
-    _ticketService = ticketService;
-          _userService = userService;
+            _ticketService = ticketService;
+            _userService = userService;
         }
 
         [HttpPost("add")]
         public async Task<ActionResult<User>> AddTickets(TicketTransactionDto transaction)
-      {
-     var staffUser = await GetCurrentUser();
-         if (staffUser == null || !staffUser.IsStaff)
+        {
+            var staffUser = await GetCurrentUser();
+            if (staffUser == null || !staffUser.IsStaff)
                 return Forbid();
 
             try
-{
+            {
                 var updatedUser = await _ticketService.AddTicketsAsync(transaction.UserId, transaction.Amount);
-        return Ok(updatedUser);
+                return Ok(updatedUser);
             }
-      catch (KeyNotFoundException)
-       {
-       return NotFound();
-   }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
         }
 
         [HttpPost("deduct")]
         public async Task<ActionResult<User>> DeductTickets(TicketTransactionDto transaction)
         {
             var staffUser = await GetCurrentUser();
-     if (staffUser == null || !staffUser.IsStaff)
-        return Forbid();
+            if (staffUser == null || !staffUser.IsStaff)
+                return Forbid();
 
-      try
-       {
-     var updatedUser = await _ticketService.DeductTicketsAsync(transaction.UserId, transaction.Amount);
-      return Ok(updatedUser);
-         }
+            try
+            {
+                var updatedUser = await _ticketService.DeductTicketsAsync(transaction.UserId, transaction.Amount);
+                return Ok(updatedUser);
+            }
             catch (KeyNotFoundException)
-       {
-return NotFound();
-  }
+            {
+                return NotFound();
+            }
             catch (InvalidOperationException ex)
-       {
-       return BadRequest(ex.Message);
-     }
-      }
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
         // TODO: Replace this with proper authentication
         private async Task<User?> GetCurrentUser()
         {
             // This is a placeholder - replace with actual user authentication
-            var userId = 1; // Get from authentication context
-      return await _userService.GetUserByIdAsync(userId);
+            var userId = 1; // Default to user ID 1 for demo purposes
+            return await _userService.GetUserByIdAsync(userId);
         }
     }
 }
