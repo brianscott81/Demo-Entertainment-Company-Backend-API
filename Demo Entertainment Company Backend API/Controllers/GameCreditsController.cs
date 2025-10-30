@@ -9,10 +9,10 @@ namespace Demo_Entertainment_Company_Backend_API.Controllers
     [Route("api/[controller]")]
     public class GameCreditsController : ControllerBase
     {
-        private readonly GameCreditService _creditService;
-        private readonly UserService _userService;
+        private readonly IGameCreditService _creditService;
+        private readonly IUserService _userService;
 
-        public GameCreditsController(GameCreditService creditService, UserService userService)
+        public GameCreditsController(IGameCreditService creditService, IUserService userService)
         {
             _creditService = creditService;
             _userService = userService;

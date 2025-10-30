@@ -9,9 +9,9 @@ namespace Demo_Entertainment_Company_Backend_API.Controllers
     [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
-        private readonly UserService _userService;
+        private readonly IUserService _userService;
 
-        public UserController(UserService userService)
+        public UserController(IUserService userService)
         {
             _userService = userService;
         }
@@ -36,7 +36,10 @@ namespace Demo_Entertainment_Company_Backend_API.Controllers
         public async Task<ActionResult<User>> CreateUser(CreateUserDto createUserDto)
         {
             var user = await _userService.CreateUserAsync(createUserDto);
-            return CreatedAtAction(nameof(GetUser), new { id = user.Id }, user);
+            return CreatedAtAction(nameof(GetUser), new
+            {
+                id = user.Id
+            }, user);
         }
     }
 }

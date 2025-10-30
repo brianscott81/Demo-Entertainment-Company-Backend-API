@@ -9,10 +9,10 @@ namespace Demo_Entertainment_Company_Backend_API.Controllers
     [Route("api/[controller]")]
     public class RideTicketsController : ControllerBase
     {
-        private readonly RideTicketService _ticketService;
-        private readonly UserService _userService;
+        private readonly IRideTicketService _ticketService;
+        private readonly IUserService _userService;
 
-        public RideTicketsController(RideTicketService ticketService, UserService userService)
+        public RideTicketsController(IRideTicketService ticketService, IUserService userService)
         {
             _ticketService = ticketService;
             _userService = userService;

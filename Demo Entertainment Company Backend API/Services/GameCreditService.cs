@@ -2,7 +2,7 @@ using Demo_Entertainment_Company_Backend_API.Models;
 
 namespace Demo_Entertainment_Company_Backend_API.Services
 {
-    public class GameCreditService
+    public class GameCreditService : IGameCreditService
     {
         private readonly ApplicationDbContext _context;
 

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Demo_Entertainment_Company_Backend_API.Services
 {
-    public class UserService
+    public class UserService : IUserService
     {
         private readonly ApplicationDbContext _context;
 
